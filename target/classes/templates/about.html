@@ -1,0 +1,218 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="fragments/header :: header-css"/>
+    <script th:inline="javascript">
+    /*<![CDATA[*/
+    	function sendMsg(){
+    		const socket = io("http://192.168.15.136:9000");
+    		var inputArray = new Array();
+    		for(var t=0;t<8;t++){
+    			inputArray[t] = Number(document.getElementById("input"+(t+1)).value);
+    		}
+    		console.log(inputArray)
+    		socket.emit("message", inputArray);
+    	}
+    	/*]]>*/
+    </script>
+</head>
+<body>
+
+<div th:replace="fragments/header :: header"/>
+
+<div class="container">
+
+    <div class="starter-template">
+        <h1>DLC_ID page (No need login)</h1>
+    </div>
+    <H2>Real-Time Table</H2>
+			<h3>DLC_TABLE</h3>
+			<div id= "list">
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>	
+			<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+			<script th:inline="javascript">
+			/*<![CDATA[*/
+				
+			$(document)
+					.ready(
+							function() {
+								// Connect to our node/websockets server
+								const socket = io('http://192.168.15.136:9000');
+								
+								var buffer = new ArrayBuffer(17);
+								
+
+								// Initial set of notes, loop through and add to list
+								socket.on('message', function(data) {
+									//console.log(data);
+									buffer = data;
+									var int8View = new Int8Array(buffer);
+									//console.log(int8View);
+									var val = new Array();
+									
+									for(var j=1;j<int8View.length; j++){
+										if(int8View[j]==0){
+											val[j-1] = int8View[j];	
+										}else{
+											val[j-1] = 1
+										}
+										
+									}
+									var val0 = int8View[1]
+									//console.log(val);
+									var html;
+									
+										
+										for (var i = 0; i < val.length; i++) {
+											// We store html as a var then add to DOM after for efficiency
+											html += '<li>' + val[i] + '</li></br>'
+											$('#notes'+(i+i)).html(val[i])
+											$('#notes'+(i+i+1)).html(val[i])
+											
+											//
+											
+											
+											//
+										}
+										
+										
+										//console.log(html)
+										
+								})
+
+								})
+
+								// New note emitted, add it to our list of current notes
+
+			/*]]>*/
+			</script>
+			
+			</div>
+			
+<!-- /.container -->
+
+<button onClick="sendMsg()">점유비 설정 </button>
+<table class="table table-sm ">
+				<thead class="thead-dark">
+					<tr>
+						<th>DLC_ID</th>
+						<th>1ch</th>
+						<th>2ch</th>
+						<th>3ch</th>
+						<th>4ch</th>
+						<th>5ch</th>
+						<th>6ch</th>
+						<th>7ch</th>
+						<th>8ch</th>
+						<th>점유비설정</th>
+						
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>1</td>
+						<td th:id="notes0"></td>
+						<td th:id="notes1"></td>
+						<td th:id="notes2"></td>
+						<td th:id="notes3"></td>
+						<td th:id="notes4"></td>
+						<td th:id="notes5"></td>
+						<td th:id="notes6"></td>
+						<td th:id="notes7"></td>	
+						<th><input type = "text" id="input1" style="width:50px;"></input></th>	
+					</tr>
+					<tr>
+						<td>2</td>
+						<td th:id="notes8"></td>
+						<td th:id="notes9"></td>
+						<td th:id="notes10"></td>
+						<td th:id="notes11"></td>
+						<td th:id="notes12"></td>
+						<td th:id="notes13"></td>
+						<td th:id="notes14"></td>
+						<td th:id="notes15"></td>
+						<th><input type = "text" id="input2" style="width:50px;"></input></th>			
+					</tr>
+					<tr>
+						<td>3</td>
+						<td th:id="notes16"></td>
+						<td th:id="notes17"></td>
+						<td th:id="notes18"></td>
+						<td th:id="notes19"></td>
+						<td th:id="notes20"></td>
+						<td th:id="notes21"></td>
+						<td th:id="notes22"></td>
+						<td th:id="notes23"></td>		
+						<th><input type = "text" id="input3" style="width:50px;"></input></th>	
+					</tr>
+					<tr>
+						<td>4</td>
+						<td th:id="notes24"></td>
+						<td th:id="notes25"></td>
+						<td th:id="notes26"></td>
+						<td th:id="notes27"></td>
+						<td th:id="notes28"></td>
+						<td th:id="notes29"></td>
+						<td th:id="notes30"></td>
+						<td th:id="notes31"></td>			
+						<th><input type = "text" id="input4" style="width:50px;"></input></th>
+					</tr>
+					<tr>
+						<td>5</td>
+						<td th:id="notes32"></td>
+						<td th:id="notes33"></td>
+						<td th:id="notes34"></td>
+						<td th:id="notes35"></td>
+						<td th:id="notes36"></td>
+						<td th:id="notes37"></td>
+						<td th:id="notes38"></td>
+						<td th:id="notes39"></td>			
+						<th><input type = "text" id="input5" style="width:50px;"></input></th>
+					</tr>
+					<tr>
+						<td>6</td>
+						<td th:id="notes40"></td>
+						<td th:id="notes41"></td>
+						<td th:id="notes42"></td>
+						<td th:id="notes43"></td>
+						<td th:id="notes44"></td>
+						<td th:id="notes45"></td>
+						<td th:id="notes46"></td>
+						<td th:id="notes47"></td>		
+						<th><input type = "text" id="input6" style="width:50px;"></input></th>	
+					</tr>
+					<tr>
+						<td>7</td>
+						<td th:id="notes48"></td>
+						<td th:id="notes49"></td>
+						<td th:id="notes50"></td>
+						<td th:id="notes51"></td>
+						<td th:id="notes52"></td>
+						<td th:id="notes53"></td>
+						<td th:id="notes54"></td>
+						<td th:id="notes55"></td>			
+						<th><input type = "text" id="input7" style="width:50px;"></input></th>
+					</tr>
+					<tr>
+						<td>8</td>
+						<td th:id="notes56"></td>
+						<td th:id="notes57"></td>
+						<td th:id="notes58"></td>
+						<td th:id="notes59"></td>
+						<td th:id="notes60"></td>
+						<td th:id="notes61"></td>
+						<td th:id="notes62"></td>
+						<td th:id="notes63"></td>			
+						<th><input type = "text" id="input8" style="width:50px;"></input></th>
+					</tr>	
+				</tbody>
+			</table>
+			<ul id="notes"></ul>
+
+</div>
+<!-- /.container -->
+
+<div th:replace="fragments/footer :: footer"/>
+
+</body>
+</html>

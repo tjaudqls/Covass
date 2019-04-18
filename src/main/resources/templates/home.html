@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Spring Boot Thymeleaf + Spring Security</title>
+
+    <div th:replace="fragments/header :: header-css"/>
+
+</head>
+<body>
+
+<div th:replace="fragments/header :: header"/>
+
+<div class="container">
+
+    <div class="starter-template">
+        <p>Spring Boot Web Thymeleaf + Spring Security</p>
+        <h1>COVASS_B HOME</h1>
+        <h2>1. Visit <a th:href="@{/admin}">Admin page</a></h2>
+        <h2>2. Visit <a th:href="@{/user}">SLC page </a></h2>
+        <h2>3. Visit <a th:href="@{/about}">DLC_page</a></h2>
+        <h2>4. Visit <a th:href="@{/map}">Map page</a></h2>
+        <h2>5. Visit <a th:href="@{/main}">TEST page</a></h2>
+    </div>
+
+</div>
+<!-- /.container -->
+
+<div th:replace="fragments/footer :: footer"/>
+
+</body>
+</html>

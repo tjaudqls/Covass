@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="fragments/header :: header-css"/>
+    
+</head>
+<body>
+
+<div th:replace="fragments/header :: header"/>
+
+<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=5xf7prcg7b"></script>
+
+<div id="map" style="width:100%;height:800px;"></div>
+
+<script>
+/*<![CDATA[*/
+var mapOptions = {
+    center: new naver.maps.LatLng(37.3989582,126.9663143),
+    zoom: 10
+};
+
+var map = new naver.maps.Map('map', mapOptions);
+
+var HOME_PATH = window.HOME_PATH || '.';
+<!--마커  -->
+var cityhall = new naver.maps.LatLng(37.3989582,126.9663143),
+    map = new naver.maps.Map('map', {
+        center: cityhall,
+        zoom: 10
+    }),
+    marker = new naver.maps.Marker({
+        map: map,
+        position: cityhall
+    });
+<!--마커  -->
+
+var contentString = [
+        '<div class="iw_inner">',
+        '   <iframe src="http://cctvsec.ktict.co.kr/2/NQ4hBSsfdbFCBq/qgZZtZLC9JT6p/kx82WfTVBujtedk9QmRKQ3BFJFXfR7wF1yT" width="300" height="200"></iframe><br />',
+        '   <a href="http://192.168.15.40/"target="_blank">새탭에서 열기</a><br />',
+        '   </p>',
+        '</div>'
+    ].join('');
+
+var infowindow = new naver.maps.InfoWindow({
+    content: contentString,
+    maxWidth: 340,
+    backgroundColor: "#eee",
+    borderColor: "#2db400",
+    borderWidth: 5,
+    anchorSize: new naver.maps.Size(30, 30),
+    anchorSkew: true,
+    anchorColor: "#eee",
+    pixelOffset: new naver.maps.Point(20, -20)
+});
+
+naver.maps.Event.addListener(marker, "click", function(e) {
+    if (infowindow.getMap()) {
+        infowindow.close();
+    } else {
+        infowindow.open(map, marker);
+    }
+});
+/*]]>*/
+</script>
+			
+<div th:replace="fragments/footer :: footer"/>
+
+</body>
+</html>
