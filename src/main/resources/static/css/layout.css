@@ -1,0 +1,213 @@
+/* PTD */
+
+#PTD_left_content{
+    position: relative;
+    width: 250px;
+    float: left;
+    top:60px;
+    text-align: center;
+    margin: 10px;
+}
+#PTD_center_content{
+    position: relative;
+    float: left;
+    padding: 10px;
+}
+#PTD_content{
+    right:20px;
+    width: 400px;
+    height: 330px;
+    margin: 10px;
+    padding: 10px;
+    padding-top: 150px;
+    float: right;
+    text-align: center;
+    position: relative;
+    background-color: rgb(255, 238, 238);
+    border-radius: 20px
+}
+#PTD_left_content .button_title{
+    font-size: 2em;
+    line-height: 1.6em;
+    margin: 15px;
+}
+
+/* PIB */
+
+#PIB_left_content{
+    position: relative;
+    width: 250px;
+    float: left;
+    top:120px;
+    text-align: center;
+    margin: 10px;
+}
+#PIB_center_content{
+    position: relative;
+    float: left;
+    padding: 10px;
+}
+#PIB_content{
+    
+    right:20 px;
+    width: 400px;
+    height: 470px;
+    margin: 10px;
+    padding: 10px;
+    float: right;
+    text-align: center;
+    position: relative;
+    background-color: rgb(2, 53, 119);
+    border-radius: 20px;
+}
+#PIB_content_inner{
+    background-color: white;
+    text-align: center;
+    margin: 20px;
+    padding: 10px;
+    border: solid 2px;
+    border-radius: 20px
+}
+#PIB_left_content .button_title{
+    font-size: 2em;
+    line-height: 1.6em;
+    margin: 15px;
+}
+
+/* common session*/
+
+#il{
+    padding-left: 15px;
+}
+header{
+    color: #F9F9F9;
+    background-color: #625757;
+    font-size: 2em;
+    padding: 10px;
+}
+#mainBtn{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+header.mainHeader{
+    text-align: center;
+}
+body{
+    background: #BCBAB8;
+    font-family: HY중고딕;
+}
+.grid{
+    width: 100%;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 50px;
+}
+.grid .title button{
+    margin-left: 50px;
+}
+.homebtn{
+    text-align: center;
+}
+header .grid .title{
+    margin-left: 10px;
+}
+#container{
+    margin: 10px;
+    padding: 10px;
+}
+.btnInter{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    border-top: 1px solid #ccc;
+    margin: -5px;
+    
+}
+.btnInter#butto n1{
+    text-align: right;
+}
+#container .btnInter .button_title{
+    font-size: 2em;
+    line-height: 1.6em;
+    margin: 15px;
+}
+#container .btnInter #button_title, .slider-wrapper{
+    font-size: 2em;
+    line-height: 2em;
+    margin: 15px;
+}
+.upper_title{
+    font-size: 2em;
+    padding-left: 30px;
+    background-color: #CCCCCC ;
+    overflow: auto;
+}
+.upper_sub{
+    text-height: 10px;
+}
+.lower_sub{
+    padding: 0px;
+    text-height: 10px;
+    text-align: center;
+}
+.upper_sub table th,.lower_sub table th{
+    border: solid 1px;
+    width: 200px;
+    line-height:40px;
+}
+table .right{
+    margin-left: 40px;
+}
+.lower_sub table td{
+    width:200px;
+    text-align: center;
+}
+#outer{
+    width:100%;
+    padding: 20px;
+}
+.slider-wrapper{
+    padding: 10px;
+    float: left;
+    text-align: center;
+}
+input[type=text] {
+    border-radius: 40px;
+    font-size: 1.2em;
+    text-align: center;
+}
+#textInter{
+    position: relative;
+    padding: 5px 10px;
+    border-radius: 40px;
+    text-align: center;
+}
+/*modal*/
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.modal__overlay {
+    background-color: rgba(0, 0, 0, 0.6);
+    width: 100%;
+    height: 100%;
+    position:
+     absolute;
+}
+.modal__content {
+    background-color: white;
+    padding: 50px 100px;
+    text-align: center;
+    position: relative;
+    border-radius: 10px;
+    width: 30%;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+.hidden {
+    display: none;
+}

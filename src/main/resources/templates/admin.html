@@ -2,6 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <div th:replace="fragments/header :: header-css"/>
+    <script type="text/javascript" 
+
+        src="vxgplayer-1.8.51.min.js"> </script> 
+
+    <link href="vxgplayer-1.8.51.min.css" rel="stylesheet"/>
 </head>
 <body>
 
@@ -21,6 +26,41 @@
 
 </div>
 <!-- /.container -->
+<table class="">
+  <tr>
+  <td>
+  	<iframe style="width: 645px; height: 500px;" name="img" src="http://192.168.15.139/mjpg/video.mjpg"></iframe>
+  </td>
+  <td>
+	<div class="vxgplayer" 
+		id="vxg_media_player1" 
+		url="rtsp://admin:qwe123@192.168.15.251:555" 
+		autostart = "true"
+		controls = "true"
+		avsync = "true"
+		nmf-src="pnacl/Release/media_player.nmf" 
+		nmf-path="media_player.nmf">
+	</div>
+  </td>
+  </tr>
+  <tr>
+  	<td>
+  		<h2>ip 설정할곳</h2>
+  		<input type = "text" value = "xxx.xxx.xx.xxx"/>
+  		<form th:action="@{/admin}" method="post">
+            <input type="submit" value="동영상 추출"/>
+        </form>
+  	</td>
+  	<td>
+  		<h2>ip 설정할곳</h2>
+  		<input type = "text" value = "xxx.xxx.xx.xxx"/>
+  	</td>
+  </tr>
+</table>
+
+
+
+
 
 <div th:replace="fragments/footer :: footer"/>
 

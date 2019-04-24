@@ -1,0 +1,228 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<style>
+		#TEST { display: inline-block; height: 30px; }
+	</style>
+    <div th:replace="fragments/header :: header-css"/>
+    <meta charset="utf-8"></meta>
+        <link href="../css/button.css" rel="stylesheet" type="text/css"></link>
+        <link href="../css/layout.css" rel="stylesheet" type="text/css"></link>
+        <link href="../css/table.css" rel="stylesheet" type="text/css"></link>
+        <!--
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.16/socket.io.min.js"></script>-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+        <script th:inline="javascript">
+			/*<![CDATA[*/
+				
+			$(document)
+					.ready(
+							function() {
+								// Connect to our node/websockets server
+								const socket = io('http://192.168.15.136:9000');
+								
+								var buffer = new ArrayBuffer(17);
+								
+
+								// Initial set of notes, loop through and add to list
+								socket.on('message', function(data) {
+									//console.log(data);
+									buffer = data;
+									var int8View = new Int8Array(buffer);
+									//console.log(int8View);
+									var val = new Array();
+									
+									for(var j=1;j<int8View.length; j++){
+										if(int8View[j]==0){
+											val[j-1] = int8View[j];	
+										}else{
+											val[j-1] = 1
+										}
+										
+									}
+									var val0 = int8View[1]
+									//console.log(val);
+									var html;
+									
+										
+										for (var i = 0; i < val.length; i++) {
+											// We store html as a var then add to DOM after for efficiency
+											html += '<li>' + val[i] + '</li></br>'
+											$('#notes'+(i+i)).html(val[i])
+											$('#notes'+(i+i+1)).html(val[i])
+											
+											//
+											
+											
+											//
+										}
+										
+										
+										//console.log(html)
+										
+								})
+
+								})
+
+								// New note emitted, add it to our list of current notes
+
+			/*]]>*/
+			</script>
+</head>
+<body>
+
+<div th:replace="fragments/header :: header"/>
+
+<div class="container">
+
+    <div class="starter-template">
+        <h1>User page (Spring Security protected)</h1>
+
+        <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Sign Out"/>
+        </form>
+
+    </div>
+	<!-- <button onClick="sendMsg()">설정</button>  -->
+</div>
+
+<header id="Menu">
+
+            <div class="grid">
+                <span class="title">DLC Emulation</span>
+                
+                <div class="grid-item home">
+                    <img src="images/home.png" class="homebtn" onclick="window.location.href='Main.html'"></img>
+                </div>
+            </div>
+        </header>
+        <table class="type05">
+        
+            <thead>
+                <tr>
+                    <th>DLC ID</th>
+                    <th>Ch.1</th>
+                    <th>Ch.2</th>
+                    <th>Ch.3</th>
+                    <th>Ch.4</th>
+                    <th>Ch.5</th>
+                    <th>Ch.6</th>
+                    <th>Ch.7</th>
+                    <th>Ch.8</th>
+                    <th>통신</th>
+                    <th>점유비 설정</th>
+                </tr>
+            </thead>
+            <tr>
+                <th th:scope="row" th:id="leftbar">1</th>
+                <td th:id="notes0"></td>
+                <td th:id="notes1"></td>
+                <td th:id="notes2"></td>
+                <td th:id="notes3"></td>
+                <td th:id="notes4"></td>
+                <td th:id="notes5"></td>
+                <td th:id="notes6"></td>
+                <td th:id="notes7"></td>   
+                <td>0</td>
+                <td><div id="PushButton_1"><input type = "text" id="input1" style="width:50px; height:25px;"></input></div></td>
+            </tr>
+            <tr>
+                <th th:scope="row" th:id="leftbar">2</th>
+                <td th:id="notes8"></td>
+                <td th:id="notes9"></td>
+                <td th:id="notes10"></td>
+                <td th:id="notes11"></td>
+                <td th:id="notes12"></td>
+                <td th:id="notes13"></td>
+                <td th:id="notes14"></td>
+                <td th:id="notes15"></td>  
+                <td>0</td>
+                <td><div th:id="PushButton_1"><input type = "text" id="input2" style="width:50px; height:25px;"></input></div></td>
+            </tr>
+            <tr>
+                <th th:scope="row" th:id="leftbar">3</th>               
+                <td th:id="notes16"></td>
+                <td th:id="notes17"></td>
+                <td th:id="notes18"></td>
+                <td th:id="notes19"></td>
+                <td th:id="notes20"></td>
+                <td th:id="notes21"></td>
+                <td th:id="notes22"></td>
+                <td th:id="notes23"></td>  
+                <td>0</td>
+                <td><div th:id="PushButton_1"><input type = "text" id="input3" style="width:50px; height:25px;"></input></div></td>
+            </tr>
+            <tr>
+                <th th:scope="row" th:id="leftbar">4</th>
+                <td th:id="notes24"></td>
+                <td th:id="notes25"></td>
+                <td th:id="notes26"></td>
+                <td th:id="notes27"></td>
+                <td th:id="notes28"></td>
+                <td th:id="notes29"></td>
+                <td th:id="notes30"></td>
+                <td th:id="notes31"></td>  
+                <td>0</td>
+                <td><div th:id="PushButton_1"><input type = "text" id="input4" style="width:50px; height:25px;"></input></div></td>
+            </tr>
+            <tr>
+                <th th:scope="row" th:id="leftbar">5</th>
+                <td th:id="notes32"></td>
+                <td th:id="notes33"></td>
+                <td th:id="notes34"></td>
+                <td th:id="notes35"></td>
+                <td th:id="notes36"></td>
+                <td th:id="notes37"></td>
+                <td th:id="notes38"></td>
+                <td th:id="notes39"></td>  
+                <td>0</td>
+                <td><div th:id="PushButton_1"><input type = "text" id="input5" style="width:50px; height:25px;"></input></div></td>
+            </tr>
+            <tr>
+                <th th:scope="row" th:id="leftbar">6</th>
+                <td th:id="notes40"></td>
+                <td th:id="notes41"></td>
+                <td th:id="notes42"></td>
+                <td th:id="notes43"></td>
+                <td th:id="notes44"></td>
+                <td th:id="notes45"></td>
+                <td th:id="notes46"></td>
+                <td th:id="notes47"></td>  
+                <td>0</td>
+                <td><div th:id="PushButton_1"><input type = "text" id="input6" style="width:50px; height:25px;"></input></div></td>
+            </tr>
+            <tr>
+                <th th:scope="row" th:id="leftbar">7</th>
+                <td th:id="notes48"></td>
+                <td th:id="notes49"></td>
+                <td th:id="notes50"></td>
+                <td th:id="notes51"></td>
+                <td th:id="notes52"></td>
+                <td th:id="notes53"></td>
+                <td th:id="notes54"></td>
+                <td th:id="notes55"></td>
+                <td>0</td>
+                <td><div th:id="PushButton_1"><input type = "text" id="input7" style="width:50px; height:25px;"></input></div></td>
+            </tr>
+            <tr>
+                <th th:scope="row" th:id="leftbar">8</th>
+                <td th:id="notes56"></td>
+                <td th:id="notes57"></td>
+                <td th:id="notes58"></td>
+                <td th:id="notes59"></td>
+                <td th:id="notes60"></td>
+                <td th:id="notes61"></td>
+                <td th:id="notes62"></td>
+                <td th:id="notes63"></td>
+                <td>0</td>
+                <td><div th:id="PushButton_1"><input type = "text" id="input8" style="width:50px; height:25px;"></input></div></td>
+            </tr>
+        </table>
+        
+<!-- /.container -->
+<div th:replace="fragments/footer :: footer"/>
+
+</body>
+</html>

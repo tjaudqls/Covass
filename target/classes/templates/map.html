@@ -1,70 +1,112 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <div th:replace="fragments/header :: header-css"/>
-    
+<div th:replace="fragments/header :: header-css" />
+<style>
+#img2 {
+	transform: rotate(65deg)
+}
+#img1 {
+	transform: rotate(65deg)
+}
+</style>
 </head>
 <body>
 
-<div th:replace="fragments/header :: header"/>
+	<div th:replace="fragments/header :: header" />
 
-<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=5xf7prcg7b"></script>
-
-<div id="map" style="width:100%;height:800px;"></div>
-
-<script>
-/*<![CDATA[*/
-var mapOptions = {
-    center: new naver.maps.LatLng(37.3989582,126.9663143),
-    zoom: 10
-};
-
-var map = new naver.maps.Map('map', mapOptions);
-
-var HOME_PATH = window.HOME_PATH || '.';
-<!--마커  -->
-var cityhall = new naver.maps.LatLng(37.3989582,126.9663143),
-    map = new naver.maps.Map('map', {
-        center: cityhall,
-        zoom: 10
-    }),
-    marker = new naver.maps.Marker({
-        map: map,
-        position: cityhall
-    });
-<!--마커  -->
-
-var contentString = [
-        '<div class="iw_inner">',
-        '   <iframe src="http://cctvsec.ktict.co.kr/2/NQ4hBSsfdbFCBq/qgZZtZLC9JT6p/kx82WfTVBujtedk9QmRKQ3BFJFXfR7wF1yT" width="300" height="200"></iframe><br />',
-        '   <a href="http://192.168.15.40/"target="_blank">새탭에서 열기</a><br />',
-        '   </p>',
-        '</div>'
-    ].join('');
-
-var infowindow = new naver.maps.InfoWindow({
-    content: contentString,
-    maxWidth: 340,
-    backgroundColor: "#eee",
-    borderColor: "#2db400",
-    borderWidth: 5,
-    anchorSize: new naver.maps.Size(30, 30),
-    anchorSkew: true,
-    anchorColor: "#eee",
-    pixelOffset: new naver.maps.Point(20, -20)
-});
-
-naver.maps.Event.addListener(marker, "click", function(e) {
-    if (infowindow.getMap()) {
-        infowindow.close();
-    } else {
-        infowindow.open(map, marker);
-    }
-});
-/*]]>*/
-</script>
+	<script type="text/javascript"
+		src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=5xf7prcg7b"></script>
+	<script
+		src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<div id="map" style="width: 100%; height: 800px;"></div>
+	<script src="">
+	</script>
+	<script>
+		/*<![CDATA[*/
 			
-<div th:replace="fragments/footer :: footer"/>
+		var HOME_PATH = window.HOME_PATH || '.';
+		var position = new naver.maps.LatLng(37.3939898,126.9593967);
+
+		var map = new naver.maps.Map('map', {
+		    center: position,
+		    zoom: 11
+		});
+  
+  var defaultMarker1 = new naver.maps.Marker({
+	    position: new naver.maps.LatLng(37.3939898,126.9593967),
+	    map: map,
+	    icon: {
+	      content: '<div style="position:absolute;left:0;top:0;width:70px;background-color:#F2F0EA;text-align:center;border:2px solid #6C483B;">'
+						+ '<img id = "img2" src="images/vertical_both_turn_left.png" style="width: 30px; height:30px">'
+						+ '</br>'
+						+ '<span id="cycle1" style="font-weight: bold;">  </span>'
+						+ '</div>',
+	      size: new naver.maps.Size(22, 35),
+	      anchor: new naver.maps.Point(11, 35)
+	    }
+	  });
+
+  var defaultMarker = new naver.maps.Marker({
+    position: new naver.maps.LatLng(37.3925103,126.9551044),
+    map: map,
+    icon: {
+      content: '<div style="position:absolute;left:0;top:0;width:70px;background-color:#F2F0EA;text-align:center;border:2px solid #6C483B;">'
+					+ '<img id = "img1" src="images/vertical_both_turn_left.png" style="width: 30px; height:30px">'
+					+ '</br>'
+					+ '<span id="cycle2" style="font-weight: bold;">  </span>'
+					+ '</div>',
+      size: new naver.maps.Size(22, 35),
+      anchor: new naver.maps.Point(11, 35)
+    }
+  });
+		/*]]>*/
+	</script>
+
+	<script>
+		var cycle = 11;
+		var count = 1;
+		var $sumImg;
+
+		$(document).ready(function(e) {
+
+			//setInterval(onChange,3000);  //0.5초에 한번씩 changeImage()함수를 호출하는 타이머를 실행시킵니다.
+			setInterval(oncycle, 1000);
+			$sumImg = $("#img1"); // 전역변수에서 var $sumImg로 지정했으면 이후 var 재지정할 필요 없음.
+			$cycleImg = $("#img2"); // 전역변수에서 var $sumImg로 지정했으면 이후 var 재지정할 필요 없음.
+
+		});
+
+		function oncycle() {
+			cycle--;
+			console.log(cycle);
+			$('#cycle1').html("SC : " + cycle)
+			$('#cycle2').html("SC : " + cycle)
+			if (cycle == 0) {
+				count++
+				$cycleImg.attr("src", "images/img" + count + ".png"); //  attr() 함수를 이용하여 src(경로) 속성을 count 값에 따라 바꿔줌
+				$sumImg.attr("src", "images/img" + count + ".png"); //  attr() 함수를 이용하여 src(경로) 속성을 count 값에 따라 바꿔줌
+				if (count >= 2) {
+					count = 0;
+				}
+				cycle = 11;
+			}
+		}
+		function onChange() {
+
+			count++; // count=count+1  약식 ( count 값을 1씩 더하기 )  //10과 같거나 크면 0으로 가라. count++로 돌아가므로 0에서 다시 1로 감.
+
+			$sumImg.attr("src", "img" + count + ".png"); //  attr() 함수를 이용하여 src(경로) 속성을 count 값에 따라 바꿔줌
+
+			if (count >= 2) {
+
+				count = 0;
+
+			}
+
+		}
+	</script>
+	<div th:replace="fragments/footer :: footer" />
 
 </body>
 </html>

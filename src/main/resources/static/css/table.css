@@ -1,0 +1,62 @@
+
+table.type05 {
+    border-collapse: separate;
+    border-spacing: 1px;
+    text-align: left;
+    line-height: 1.5;
+    border-top: 1px solid #ccc;
+    margin: 20px 10px;
+    font-family: HY중고딕;
+}
+table.type05 th {
+    width: 150px;
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+    font-size: 1.2em;
+    text-align: center;
+    background: #9D8F8F;
+    font-family: HY중고딕;
+
+}
+table.type05 td {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.2em;
+    letter-spacing: 3px;
+    background: #efefef;
+    font-family: HY중고딕;
+
+}
+table #leftbar{
+    font-weight: bold;
+    font-size:  1.2em;
+    width: 10%;
+    background: #E8E8E8;
+    font-family: HY중고딕;
+}
+.upper_sub table#type05 th, .lower_sub table#type05 th {
+    width: 200px;
+    font-weight: bold;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+    font-size: 1.5em;
+    text-align: center;
+    background: #9D8F8F;
+    font-family: HY중고딕;
+}
+.upper_sub table#type05 td, .lower_sub table#type05 td  {
+    width: 300px;
+    border-bottom: 1px solid #ccc;
+    text-align: center;
+    letter-spacing: 3px;
+    background: #efefef;
+    font-size: 1.3em;
+    font-family: HY중고딕;
+}
+.upper_sub table#type05 td{
+    width:800px;
+}
